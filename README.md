@@ -2,5 +2,6 @@
 Q-Learning
 
 Library
- Pip instal gym
- Numpy
+Pip instal gym
+
+Numpy
