@@ -9,6 +9,13 @@ episodes = 600
 
 show_every = 120
 
+epsilon = 0.9  # higher epsilon is better for start
+
+# we do not need the epsilon decay since the environment and episde number is quite low and agent learns in 400 episodes
+start_epsilon_decay =1
+end_epsilon_decay= episodes //2
+epsilon_decay_value = epsilon /episodes
+
 #print(env.observation_space.high)
 #print(env.observation_space.low)
 #print(env.action_space.n)
@@ -59,6 +66,8 @@ for episode in range(episodes):
             q_table[discrete_state + (action,)] =0
             
         discrete_state = new_discrete_state
-
+    
+    if end_epsilon_decay >= episode >= start_epsilon_decay:
+        epsilon -= epsilon_decay_value
 
 env.close()
